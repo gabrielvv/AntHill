@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9AAA809E-0AB1-49D6-A73B-23C7FCC98C00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LibMetier</RootNamespace>
+    <AssemblyName>LibMetier</AssemblyName>
+    <DefaultLanguage>fr-FR</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\LibAbstract\LibAbstract.csproj">
+      <Project>{db31a6d5-7204-43f5-9991-eebb99e95480}</Project>
+      <Name>LibAbstract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CharacterManagement\Ant.cs" />
+    <Compile Include="CharacterManagement\AntHillSpirit.cs" />
+    <Compile Include="CharacterManagement\AntInfo.cs" />
+    <Compile Include="CharacterManagement\AntState.cs" />
+    <Compile Include="CharacterManagement\Fighter.cs" />
+    <Compile Include="CharacterManagement\IAntActions.cs" />
+    <Compile Include="CharacterManagement\Male.cs" />
+    <Compile Include="CharacterManagement\Mother.cs" />
+    <Compile Include="CharacterManagement\Queen.cs" />
+    <Compile Include="CharacterManagement\Worker.cs" />
+    <Compile Include="EnvironmentManagement\AHEnvironment.cs" />
+    <Compile Include="EnvironmentManagement\EventsManager.cs" />
+    <Compile Include="EnvironmentManagement\Path.cs" />
+    <Compile Include="EnvironmentManagement\TimeManager.cs" />
+    <Compile Include="EnvironmentManagement\WeatherManager.cs" />
+    <Compile Include="EnvironmentManagement\AHZone.cs" />
+    <Compile Include="Factory\AHFactory.cs" />
+    <Compile Include="Factory\JSONFactory.cs" />
+    <Compile Include="Factory\XMLFactory.cs" />
+    <Compile Include="ObjectManagement\AHObject.cs" />
+    <Compile Include="ObjectManagement\Egg.cs" />
+    <Compile Include="ObjectManagement\Food.cs" />
+    <Compile Include="ObjectManagement\Pheromone.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
