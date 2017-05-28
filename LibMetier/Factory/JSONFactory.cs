@@ -37,7 +37,7 @@ namespace LibMetier.Factory
             throw new NotImplementedException();
         }
 
-        public override AbstractZone CreateZone(string name)
+        public override AbstractZone CreateZone(int x, int y, string name)
         {
             throw new NotImplementedException();
         }

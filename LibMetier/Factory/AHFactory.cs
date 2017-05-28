@@ -44,14 +44,14 @@ namespace LibMetier.Factory
             return new AHObject(10);
         }
 
-        public AbstractZone CreateZone(string name, int x, int y)
+        public override AbstractZone CreateZone(int x, int y, string name)
         {
             return new AHZone(x, y, name);
         }
 
-        public override AbstractZone CreateZone(string name)
-        {
-            return new AHZone(-1, -1, name);
-        }
+        //public override AbstractZone CreateZone(string name)
+        //{
+        //    return new AHZone(-1, -1, name);
+        //}
     }
 }

@@ -18,8 +18,10 @@ namespace LibAbstract.EnvironmentManagement
         public int Y { get; set; }
         public int X { get; set; }
 
-        public AbstractZone(string Name)
+        public AbstractZone(int x, int y, string Name)
         {
+            X = x;
+            Y = y;
             this.Name = Name;
         }
 
@@ -46,6 +48,16 @@ namespace LibAbstract.EnvironmentManagement
         public virtual void RemoveCharacter(AbstractCharacter character)
         {
             Characters.Remove(character);
+        }
+
+        public override string ToString()
+        {
+            string str = String.Format("[{0},{1}] ->", X, Y);
+            foreach(AbstractAccess access in Accesses)
+            {
+                str += String.Format("\t[{0},{1}][{2},{3}]", access.start.X, access.start.Y, access.end.X, access.end.Y);
+            }
+            return str;
         }
     }
 }

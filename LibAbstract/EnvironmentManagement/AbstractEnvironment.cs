@@ -58,6 +58,7 @@ namespace LibAbstract.EnvironmentManagement
             }
         }
 
+        public abstract void PrintEnvironment();
         public abstract void LoadEnvironment(AbstractFactory factory);
         public abstract void LoadObjects(AbstractFactory factory);
         public abstract void LoadCharacters(AbstractFactory factory);

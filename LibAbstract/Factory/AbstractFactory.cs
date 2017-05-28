@@ -24,8 +24,8 @@ namespace LibAbstract.Factory
 
         public abstract AbstractAccess CreateAccess(AbstractZone zdebut, AbstractZone zfin);
         public abstract AbstractEnvironment CreateEnvironment();
-        public abstract AbstractObject CreateObject(String name);
-        public abstract AbstractZone CreateZone(String name);
-        public abstract AbstractCharacter CreateCharacter(String name);
+        public abstract AbstractObject CreateObject(string name);
+        public abstract AbstractZone CreateZone(int x, int y, string name);
+        public abstract AbstractCharacter CreateCharacter(string name);
     }
 }

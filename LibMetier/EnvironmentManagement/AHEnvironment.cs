@@ -47,7 +47,7 @@ namespace LibMetier.EnvironmentManagement
                 char c = (char)(65+i);
                 for (int j = 0; j < X; j++)
                 {
-                    AddZones(factory.CreateZone(String.Format("AHZone {0}{1}", c, j)));
+                    AddZones( factory.CreateZone( j, i, String.Format("AHZone {0}{1}", c, j) ) );
                 }
             }
 
@@ -95,6 +95,18 @@ namespace LibMetier.EnvironmentManagement
             }
                     
             // TODO initialiser une matrice
+        }
+
+        public override void PrintEnvironment()
+        {
+            for (int i = 0; i < Y; i++)
+            {
+                for (int j = 0; j < X; j++)
+                {
+                    int index = i * Y + j;
+                    System.Diagnostics.Debug.WriteLine("{0}", Zones.ElementAt(index));
+                }
+            }
         }
 
         public override void LoadObjects(AbstractFactory factory)

@@ -14,10 +14,8 @@ namespace LibMetier.EnvironmentManagement
         public int X { get; set; }
         public int Y { get; set; }
 
-        public AHZone(int x, int y, string Name = "Field") : base(Name)
+        public AHZone(int x, int y, string Name) : base(x, y, Name)
         {
-            X = x;
-            Y = y;
         }
 
         public override void AddAccess(AbstractAccess access)

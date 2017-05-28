@@ -18,9 +18,10 @@ namespace SimulationFourmiliere
             AbstractEnvironment Env = Factory.CreateEnvironment();
 
             Env.LoadEnvironment(Factory);
-            Env.LoadObjects(Factory);
-            Env.LoadCharacters(Factory);
-            Env.Simulate();
+            Env.PrintEnvironment();
+            //Env.LoadObjects(Factory);
+            //Env.LoadCharacters(Factory);
+            //Env.Simulate();
 
             Console.ReadKey();
         }
