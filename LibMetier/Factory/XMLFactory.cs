@@ -11,6 +11,11 @@ namespace LibMetier.Factory
 {
     class XMLFactory : LibAbstract.Factory.AbstractFactory
     {
+        public XMLFactory(string title = "XMLFactory") : base(title)
+        {
+
+        }
+
         public override AbstractAccess CreateAccess(AbstractZone zdebut, AbstractZone zfin)
         {
             throw new NotImplementedException();

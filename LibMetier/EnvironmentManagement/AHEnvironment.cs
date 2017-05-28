@@ -55,29 +55,39 @@ namespace LibMetier.EnvironmentManagement
             {
                 for (int j = 0; j < X; j++)
                 {
-                    int index = i * Y + X;
-                    bool CORNER_UP_LEFT    = i == 0 && j == 0;
-                    bool CORNER_UP_RIGHT   = i == 0 && j == X-1;
-                    bool CORNER_BOT_LEFT   = i == Y-1 && j == 0;
-                    bool CORNER_BOT_RIGHT  = i == Y-1 && j == X-1;
-                    bool SIDE_LEFT         = j == 0 && i != 0 && i != Y-1;
-                    bool SIDE_UP           = i == 0 && j != 0 && j != X-1;
-                    bool SIDE_RIGHT        = j == X-1 && i != 0 && i != Y-1;
-                    bool SIDE_BOT          = i == Y-1 && j != 0 && j != X-1;
+                    int index = i * Y + j;
+                    //bool CORNER_UP_LEFT    = i == 0 && j == 0;
+                    //bool CORNER_UP_RIGHT   = i == 0 && j == X-1;
+                    //bool CORNER_BOT_LEFT   = i == Y-1 && j == 0;
+                    //bool CORNER_BOT_RIGHT  = i == Y-1 && j == X-1;
+                    //bool SIDE_LEFT         = j == 0 && i != 0 && i != Y-1;
+                    //bool SIDE_UP           = i == 0 && j != 0 && j != X-1;
+                    //bool SIDE_RIGHT        = j == X-1 && i != 0 && i != Y-1;
+                    //bool SIDE_BOT          = i == Y-1 && j != 0 && j != X-1;
 
-                    AbstractZone z = Zones.ElementAt(i*Y+X);
-                    //AbstractZone uz = Zones.ElementAt((i-1) * Y + X);
-                    //AbstractZone lz = Zones.ElementAt(i * Y + (X-1));
-                    AbstractZone rz = Zones.ElementAt(i * Y + (X+1));
-                    AbstractZone bz = Zones.ElementAt((i+1) * Y + X);
+                    AbstractZone z = Zones.ElementAt(index);
 
-                    if (j != X-1)
+                    //AbstractZone uz = Zones.ElementAt((i-1) * Y + j);
+                    //AbstractZone lz = Zones.ElementAt(i * Y + (j-1));
+
+                    int indexRight = i * Y + (j + 1);
+                    int indexBottom = (i + 1) * Y + j;
+
+
+                    //System.Diagnostics.Debug.WriteLine("Zone index : {0}", index);
+
+                    //System.Diagnostics.Debug.WriteLine("Right Zone index : {0}", indexRight);
+                    //System.Diagnostics.Debug.WriteLine("Bottom Zone index : {0}", indexBottom);
+
+                    if (j != X - 1 && indexRight < Zones.Count)
                     {
+                        AbstractZone rz = Zones.ElementAt(indexRight);
                         factory.CreateAccess(z, rz);
                     }
 
-                    if (i != Y - 1)
+                    if (i != Y - 1 && indexBottom < Zones.Count)
                     {
+                        AbstractZone bz = Zones.ElementAt(indexBottom);
                         factory.CreateAccess(z, bz);
                     }
 
@@ -106,6 +116,7 @@ namespace LibMetier.EnvironmentManagement
             // Pour chaque personnage : Execution
             // Pour chaque objet : Update()
             // Récupérer informations + Stats
+            
             // Affichage
             Statistics();
         }

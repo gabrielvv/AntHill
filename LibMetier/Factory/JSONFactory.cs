@@ -9,8 +9,14 @@ using LibAbstract.ObjectManagement;
 
 namespace LibMetier.Factory
 {
-    class JSONFactory : LibAbstract.Factory.AbstractFactory
+    public class JSONFactory : LibAbstract.Factory.AbstractFactory
     {
+
+        public JSONFactory(string title="JSONFactory") : base(title)
+        {
+
+        }
+
         public override AbstractAccess CreateAccess(AbstractZone zdebut, AbstractZone zfin)
         {
             throw new NotImplementedException();

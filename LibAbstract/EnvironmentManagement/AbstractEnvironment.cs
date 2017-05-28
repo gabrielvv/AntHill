@@ -12,12 +12,12 @@ namespace LibAbstract.EnvironmentManagement
     public abstract class AbstractEnvironment
     {
         // TODO audit cas d'usage => si peu fréquent on peut obtenir la liste via getter et itération dans Zones
-        public List<AbstractObject> ObjectList { get; set; }
+        public readonly List<AbstractObject> ObjectList = new List<AbstractObject>(); 
 
         // TODO audit cas d'usage => si peu fréquent on peut obtenir la liste via getter et itération dans Zones
-        public List<AbstractAccess> Accesses { get; set; }
-        public List<AbstractZone> Zones { get; set; }
-        public List<AbstractCharacter> Characters { get; set; }
+        public readonly List<AbstractAccess> Accesses = new List<AbstractAccess>();
+        public readonly List<AbstractZone> Zones = new List<AbstractZone>();
+        public readonly List<AbstractCharacter> Characters = new List<AbstractCharacter>();
 
         public AbstractEnvironment()
         {
@@ -46,6 +46,11 @@ namespace LibAbstract.EnvironmentManagement
         // https://msdn.microsoft.com/fr-fr/library/w5zay9db.aspx
         public virtual void AddZones(params AbstractZone[] abstractZoneArray)
         {
+            //if(abstractZoneArray.Length == 0)
+            //{
+            //    return;
+            //}
+
             Zones.AddRange(abstractZoneArray);
             foreach(AbstractZone z in abstractZoneArray)
             {

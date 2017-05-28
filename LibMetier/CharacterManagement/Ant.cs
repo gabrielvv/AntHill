@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibAbstract.EnvironmentManagement;
+using LibMetier.EnvironmentManagement;
 
 namespace LibMetier.CharacterManagement
 {
@@ -38,7 +39,7 @@ namespace LibMetier.CharacterManagement
         public readonly int FoodCapacity; // how much FoodUnit can a Ant carry
         public readonly EAntSpecialisations Specialisation;
 
-        public Ant(int life, int carriedFood, string name = "Anonyme", int x = 10, int y = 10) : base(name, x, y)
+        public Ant(int life, int carriedFood, string name = "Anonyme", AbstractZone position = null) : base(name, position)
         {
             this.Life = life;
             this.CarriedFood = carriedFood;

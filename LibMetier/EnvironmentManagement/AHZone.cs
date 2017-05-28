@@ -11,8 +11,13 @@ namespace LibMetier.EnvironmentManagement
 {
     public class AHZone : AbstractZone
     {
-        public AHZone(string Name) : base(Name)
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public AHZone(int x, int y, string Name = "Field") : base(Name)
         {
+            X = x;
+            Y = y;
         }
 
         public override void AddAccess(AbstractAccess access)

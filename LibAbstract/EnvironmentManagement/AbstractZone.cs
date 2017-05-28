@@ -11,9 +11,9 @@ namespace LibAbstract.EnvironmentManagement
     public abstract class AbstractZone
     {
         public string Name { get; set; }
-        public List<AbstractObject> Objects { get; set; }
-        public List<AbstractCharacter> Characters { get; set; }
-        public List<AbstractAccess> Accesses { get; set; }
+        public readonly List<AbstractObject> Objects = new List<AbstractObject>();
+        public readonly List<AbstractCharacter> Characters = new List<AbstractCharacter>();
+        public readonly List<AbstractAccess> Accesses = new List<AbstractAccess>();
 
         public int Y { get; set; }
         public int X { get; set; }

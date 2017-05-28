@@ -33,7 +33,7 @@ namespace LibMetier.Factory
 
         public override AbstractEnvironment CreateEnvironment()
         {
-            AHEnvironment Env = new AHEnvironment(20, 20);
+            AHEnvironment Env = new AHEnvironment(5, 5); // 400 cases
             //Env.LoadEnvironment(this);
             return Env;
         }
@@ -44,9 +44,14 @@ namespace LibMetier.Factory
             return new AHObject(10);
         }
 
+        public AbstractZone CreateZone(string name, int x, int y)
+        {
+            return new AHZone(x, y, name);
+        }
+
         public override AbstractZone CreateZone(string name)
         {
-            return new AHZone(name);
+            return new AHZone(-1, -1, name);
         }
     }
 }
