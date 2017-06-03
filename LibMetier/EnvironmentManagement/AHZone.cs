@@ -30,12 +30,12 @@ namespace LibMetier.EnvironmentManagement
 
         public override void AddObject(AbstractObject obj)
         {
-            throw new NotImplementedException();
+            base.AddObject(obj);
         }
 
         public override void RemoveAccess(AbstractAccess access)
         {
-            throw new NotImplementedException();
+            Accesses.Remove(access);
         }
 
         public override void RemoveCharacter(AbstractCharacter character)

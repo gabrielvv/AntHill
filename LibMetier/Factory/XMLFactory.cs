@@ -9,7 +9,7 @@ using LibAbstract.ObjectManagement;
 
 namespace LibMetier.Factory
 {
-    class XMLFactory : LibAbstract.Factory.AbstractFactory
+    public class XMLFactory : LibAbstract.Factory.AbstractFactory
     {
         public XMLFactory(string title = "XMLFactory") : base(title)
         {

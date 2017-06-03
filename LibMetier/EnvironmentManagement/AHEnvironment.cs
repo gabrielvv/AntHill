@@ -8,6 +8,7 @@ using LibAbstract.CharacterManagement;
 using LibAbstract.Factory;
 using LibMetier.CharacterManagement;
 using LibMetier.ObjectManagement;
+using LibAbstract.ObjectManagement;
 
 namespace LibMetier.EnvironmentManagement
 {
@@ -15,9 +16,18 @@ namespace LibMetier.EnvironmentManagement
 
     {
 
-        public int Y { get; set; }
-        public int X { get; set; }
+        private static Random rdm = new Random();
         public static TimeSpan StepDuration; // hours
+
+        public int Y { get; set; } // rows
+        public int X { get; set; } // cols
+        private int _stepCounter = 0;
+        public int StepCounter {
+            get
+            {
+                return _stepCounter;
+            }
+        }
 
         private readonly EventsManager AntHillEventsManager = new EventsManager(); // => DELEGATE ?
         private readonly TimeManager AntHillTimeManager = new TimeManager(); // => DELEGATE ?
@@ -32,7 +42,59 @@ namespace LibMetier.EnvironmentManagement
 
         public override void LoadCharacters(AbstractFactory factory)
         {
-            AddCharacter(factory.CreateCharacter(null));
+
+            int nbrChar, zoneIndex;
+            AbstractCharacter c = factory.CreateCharacter("Queen");
+            if (Zones.Count > 0)
+            {
+                zoneIndex = rdm.Next(0, Zones.Count);
+                Zones.ElementAt(zoneIndex).AddCharacter(c);
+            }
+            AddCharacter(c);
+
+            string[] antTypes = new string[] { "Male", "Worker", "Fighter", "Mother" };
+
+            foreach(string antType in antTypes)
+            {
+                nbrChar = rdm.Next(0, 20);
+                for (int i = 0; i < nbrChar; i++)
+                {
+                    c = factory.CreateCharacter(antType);
+                    if(Zones.Count > 0)
+                    {
+                        zoneIndex = rdm.Next(0, Zones.Count);
+                        Zones.ElementAt(zoneIndex).AddCharacter(c);
+                    }
+                    
+                    AddCharacter(c);
+                }
+            }
+            
+        }
+
+        public override string PrintCharacters()
+        {
+            StringBuilder builder = new StringBuilder();
+            string tmp = "";
+
+            string[] header = new string[] { "Queen", "Male", "Worker", "Fighter", "Mother", "Total" };
+            string[] values = new string[] {
+                Queen.getCount()+"",
+                Male.getCount() + "",
+                Worker.getCount() + "",
+                Fighter.getCount() + "",
+                Mother.getCount() + "",
+                Ant.getCount() + ""
+            };
+            tmp = String.Join("\t", header);
+            builder.Append(tmp + "\n");
+            System.Diagnostics.Debug.WriteLine(tmp);
+
+            tmp = String.Join("\t", values);
+            builder.Append(tmp + "\n");
+            System.Diagnostics.Debug.WriteLine(tmp);
+
+            return builder.ToString();
         }
 
         public override void LoadEnvironment(AbstractFactory factory)
@@ -97,21 +159,46 @@ namespace LibMetier.EnvironmentManagement
             // TODO initialiser une matrice
         }
 
-        public override void PrintEnvironment()
+        public override string PrintEnvironment()
         {
+            StringBuilder builder = new StringBuilder();
+            string tmp = "";
             for (int i = 0; i < Y; i++)
             {
                 for (int j = 0; j < X; j++)
                 {
                     int index = i * Y + j;
-                    System.Diagnostics.Debug.WriteLine("{0}", Zones.ElementAt(index));
+                    tmp = String.Format("{0}", Zones.ElementAt(index));
+                    builder.AppendLine(tmp);
+                    System.Diagnostics.Debug.WriteLine(tmp);
                 }
             }
+            return builder.ToString();
         }
 
         public override void LoadObjects(AbstractFactory factory)
         {
-            AddObject(factory.CreateObject("AHObject"));
+            AbstractObject o;
+            int nbrObj = rdm.Next(10, 100), zoneIndex;
+            for(int i = 0; i < nbrObj; i++)
+            {
+                o = factory.CreateObject(null);
+                if (Zones.Count > 0)
+                {
+                    zoneIndex = rdm.Next(0, Zones.Count);
+                    Zones.ElementAt(zoneIndex).AddObject(o);
+                }
+                AddObject(o);
+            }
+            
+        }
+
+        public override string PrintObjects()
+        {
+            StringBuilder builder = new StringBuilder();
+            string tmp = "";
+
+            return builder.ToString();
         }
 
         public override void MoveCharacter(AbstractCharacter character, AbstractZone sourceZone, AbstractZone destZone)
@@ -121,6 +208,7 @@ namespace LibMetier.EnvironmentManagement
 
         public override void Simulate()
         {
+            System.Diagnostics.Debug.WriteLine("Step {0}", _stepCounter++);
             // Propagation des informations générales (Horaire, Météo, Contraintes Simulations)
             // Propagation des ordres, propagation hiérarchique
             // Pour chaque perso, AnalyseSituation
@@ -128,9 +216,9 @@ namespace LibMetier.EnvironmentManagement
             // Pour chaque personnage : Execution
             // Pour chaque objet : Update()
             // Récupérer informations + Stats
-            
+
             // Affichage
-            Statistics();
+            //Statistics();
         }
 
         protected override void Statistics()

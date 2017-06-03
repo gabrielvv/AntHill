@@ -21,6 +21,10 @@ namespace LibMetier.CharacterManagement
         private static int AdultAge = 10; // (days)
 
         private static int Counter = 0; // Ant counter
+        public static int getCount()
+        {
+            return Counter;
+        }
 
         private static string DefaulfName()
         {
@@ -46,6 +50,8 @@ namespace LibMetier.CharacterManagement
 
             Ant.Counter++;
         }
+
+        ~Ant() { Ant.Counter--; }
 
         public override AbstractZone NextZoneChoice(List<AbstractAccess> accessList)
         {

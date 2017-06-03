@@ -8,8 +8,9 @@ namespace LibMetier.ObjectManagement
 {
     class Egg : AHObject
     {
-        public Egg(int weight) : base(weight)
+        public Egg() : base(/*weight*/10, "Egg")
         {
+           
         }
     }
 }

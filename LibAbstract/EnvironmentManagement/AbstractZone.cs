@@ -43,6 +43,7 @@ namespace LibAbstract.EnvironmentManagement
         }
         public virtual void AddCharacter(AbstractCharacter character)
         {
+            character.Position = this;
             Characters.Add(character);
         }
         public virtual void RemoveCharacter(AbstractCharacter character)
@@ -51,6 +52,12 @@ namespace LibAbstract.EnvironmentManagement
         }
 
         public override string ToString()
+        {
+            string str = String.Format("[{0},{1}] {2} Characters & {3} Objects", X, Y, Characters.Count, Objects.Count);
+            return str;
+        }
+
+        public string PrintAccess()
         {
             string str = String.Format("[{0},{1}] ->", X, Y);
             foreach(AbstractAccess access in Accesses)

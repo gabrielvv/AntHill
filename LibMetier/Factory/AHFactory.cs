@@ -15,6 +15,8 @@ namespace LibMetier.Factory
     public class AHFactory : LibAbstract.Factory.AbstractFactory
     {
 
+        private static Random rdm = new Random();
+
         public AHFactory(string title="Ant Hill Factory") : base(title)
         {
 
@@ -27,8 +29,28 @@ namespace LibMetier.Factory
 
         public override AbstractCharacter CreateCharacter(string name)
         {
-            // TODO => randomize ant creation
-            return new Ant(10, 0, name);
+            int life = rdm.Next(10, 100);
+            switch (name)
+            {
+                case "Male":
+                    return new Male(life, 0);
+                    break;
+                case "Mother":
+                    return new Mother(life, 0);
+                    break;
+                case "Queen":
+                    return new Queen(life, 0);
+                    break;
+                case "Worker":
+                    return new Worker(life, 0);
+                    break;
+                case "Fighter":
+                    return new Fighter(life, 0);
+                    break;
+                default:
+                    return new Ant(life, 0);
+                    break;
+            }
         }
 
         public override AbstractEnvironment CreateEnvironment()
@@ -40,8 +62,26 @@ namespace LibMetier.Factory
 
         public override AbstractObject CreateObject(string name)
         {
-            // TODO => randomize object creation
-            return new AHObject(10);
+            AHObject o = null;
+            switch(rdm.Next(4)){
+                case 0:
+                    o = new Egg();
+                    break;
+                case 1:
+                    o = new Food();
+                    break;
+                case 2:
+                    o = new Pheromone();
+                    break;
+                case 3:
+                    o = new AHObject(25, "foo");
+                    break;
+                default:
+                    o = new AHObject(58, "bar");
+                    break;
+            }
+
+            return o;
         }
 
         public override AbstractZone CreateZone(int x, int y, string name)

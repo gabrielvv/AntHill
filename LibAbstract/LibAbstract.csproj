@@ -40,7 +40,7 @@
     <Compile Include="CharacterManagement\AbstractCharacter.cs" />
     <Compile Include="CharacterManagement\IGVObserver.cs" />
     <Compile Include="CharacterManagement\AbstractSubject.cs" />
-    <Compile Include="CharacterManagement\SubjectInterface.cs" />
+    <Compile Include="CharacterManagement\IGVSubject.cs" />
     <Compile Include="EnvironmentManagement\AbstractAccess.cs" />
     <Compile Include="EnvironmentManagement\AbstractEnvironment.cs" />
     <Compile Include="EnvironmentManagement\AbstractZone.cs" />

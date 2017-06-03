@@ -8,8 +8,9 @@ namespace LibMetier.ObjectManagement
 {
     class Pheromone : AHObject
     {
-        public Pheromone(int weight) : base(weight)
+        public Pheromone() : base(/*weight*/1, "Pheromone")
         {
+
         }
     }
 }
